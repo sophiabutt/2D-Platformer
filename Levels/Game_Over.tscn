@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7ko3iw7kirgj"]
+
+[ext_resource type="Script" path="res://Levels/Game_Over.gd" id="1_psw4a"]
+
+[node name="Game_Over" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_psw4a")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -44.0
+offset_top = -26.0
+offset_right = 1167.0
+offset_bottom = 657.0
+color = Color(0.203922, 0.227451, 0.25098, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 246.0
+theme_override_font_sizes/font_size = 38
+text = "Congratulations!
+You Win!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Play_Again" type="Button" parent="."]
+layout_mode = 0
+offset_left = 476.0
+offset_top = 300.0
+offset_right = 676.0
+offset_bottom = 340.0
+focus_neighbor_bottom = NodePath("../Quit")
+focus_next = NodePath("../Quit")
+text = "Play Again?"
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 476.0
+offset_top = 360.0
+offset_right = 676.0
+offset_bottom = 400.0
+focus_neighbor_top = NodePath("../Play_Again")
+focus_previous = NodePath("../Play_Again")
+text = "Quit"
+
+[connection signal="pressed" from="Play_Again" to="." method="_on_Play_Again_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]

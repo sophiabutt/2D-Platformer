@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ukauo0i4epi5"]
+[gd_scene load_steps=17 format=3 uid="uid://ukauo0i4epi5"]
 
 [ext_resource type="Script" path="res://Levels/Spawn.gd" id="1_8gf7s"]
 [ext_resource type="Texture2D" uid="uid://ba3213klcnmhh" path="res://Assets/Tiles.png" id="1_go4ss"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://75kl8s3x66sf" path="res://Levels/Camera.tscn" id="4_ebv7f"]
 [ext_resource type="Texture2D" uid="uid://w1tr7mlqhfbh" path="res://Assets/portal_end.png" id="5_7t5j3"]
 [ext_resource type="Script" path="res://Player/Player_Container.gd" id="6_4dv3v"]
+[ext_resource type="PackedScene" uid="uid://dqj0dlhxtix6" path="res://Enemies/goblin.tscn" id="7_c5yts"]
+[ext_resource type="PackedScene" uid="uid://cpk4wvk7umyu5" path="res://Enemies/bat.tscn" id="8_xtb5a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r81hv"]
 texture = ExtResource("1_go4ss")
@@ -1240,6 +1242,11 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_xlxfn")
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_1trgp"]
+vertices = PackedVector2Array(2832, 400, 3920, 560, 2640, 464, 2736, 400, 2480, 464, 1296, 464, 1808, 416, 2480, 368, 16, 560, 816, 464, 1520, 416, 2640, 368, 2736, 304, 3152, 272, 3152, 176, 3920, 32, 32, 32, 2992, 176, 2992, 272, 2832, 304, 1296, 368, 1520, 304, 816, 368, 1808, 304)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(2, 1, 8, 4), PackedInt32Array(5, 4, 8), PackedInt32Array(9, 5, 8), PackedInt32Array(10, 6, 5), PackedInt32Array(3, 2, 11, 12), PackedInt32Array(13, 14, 15, 1), PackedInt32Array(16, 15, 14, 17), PackedInt32Array(18, 13, 1, 0, 19), PackedInt32Array(10, 5, 20, 21), PackedInt32Array(9, 8, 16, 22), PackedInt32Array(7, 6, 23), PackedInt32Array(16, 17, 18, 19, 12), PackedInt32Array(16, 12, 11, 7, 23), PackedInt32Array(16, 23, 21), PackedInt32Array(22, 16, 21, 20)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(32, 32, 16, 560, 3920, 560, 3920, 32), PackedVector2Array(816, 368, 816, 464, 1296, 464, 1296, 368), PackedVector2Array(1520, 304, 1520, 416, 1808, 416, 1808, 304), PackedVector2Array(2480, 368, 2480, 464, 2640, 464, 2640, 368), PackedVector2Array(2736, 304, 2736, 400, 2832, 400, 2832, 304), PackedVector2Array(2992, 176, 2992, 272, 3152, 272, 3152, 176)])
+
 [node name="Game" type="Node2D"]
 
 [node name="Background" type="TileMap" parent="."]
@@ -1270,6 +1277,12 @@ script = ExtResource("6_4dv3v")
 
 [node name="Enemy_Container" type="Node2D" parent="."]
 
+[node name="Goblin" parent="Enemy_Container" instance=ExtResource("7_c5yts")]
+position = Vector2(1776, 544)
+
+[node name="Bat" parent="Enemy_Container" instance=ExtResource("8_xtb5a")]
+position = Vector2(3376, 112)
+
 [node name="Platform" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_5oaye")
 format = 2
@@ -1291,5 +1304,8 @@ position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 drag_horizontal_enabled = true
 drag_vertical_offset = -0.8
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_1trgp")
 
 [connection signal="body_entered" from="Exit_to_2" to="Exit_to_2" method="_on_Exit_body_entered"]

@@ -263,4 +263,4 @@ shape = SubResource("RectangleShape2D_88yff")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [connection signal="body_entered" from="Attack" to="." method="_on_attack_body_entered"]
-[connection signal="area_shape_entered" from="Above_and_Below" to="." method="_on_above_and_below_body_entered"]
+[connection signal="body_entered" from="Above_and_Below" to="." method="_on_above_and_below_body_entered"]

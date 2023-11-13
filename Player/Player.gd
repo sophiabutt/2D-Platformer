@@ -17,6 +17,9 @@ func _ready():
 func _physics_process(_delta):
 	if direction < 0 and not $AnimatedSprite2D.flip_h: $AnimatedSprite2D.flip_h = true
 	if direction > 0 and $AnimatedSprite2D.flip_h: $AnimatedSprite2D.flip_h = false
+	if position.y > 1000:			#fell off the world
+		queue_free()
+	
 	
 func set_direction(d):
 	direction = d
@@ -25,3 +28,6 @@ func set_animation(anim):
 	if $AnimatedSprite2D.animation == anim: return
 	if $AnimatedSprite2D.sprite_frames.has_animation(anim): $AnimatedSprite2D.play(anim)
 	else: $AnimatedSprite2D.play()
+
+func die():
+	queue_free()

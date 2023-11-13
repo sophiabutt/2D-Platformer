@@ -1282,6 +1282,7 @@ position = Vector2(1776, 544)
 
 [node name="Bat" parent="Enemy_Container" instance=ExtResource("8_xtb5a")]
 position = Vector2(3376, 112)
+speed = 200
 
 [node name="Platform" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_5oaye")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cp7dswl1kughn"]
+[gd_scene load_steps=17 format=3 uid="uid://cp7dswl1kughn"]
 
 [ext_resource type="Texture2D" uid="uid://ba3213klcnmhh" path="res://Assets/Tiles.png" id="1_h0qu3"]
 [ext_resource type="Texture2D" uid="uid://c2ar0wqs2igby" path="res://Assets/portal_start.png" id="2_o6blh"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://w1tr7mlqhfbh" path="res://Assets/portal_end.png" id="5_3mkel"]
 [ext_resource type="Script" path="res://Player/Player_Container.gd" id="6_qdqb4"]
 [ext_resource type="PackedScene" uid="uid://75kl8s3x66sf" path="res://Levels/Camera.tscn" id="7_1t1lh"]
+[ext_resource type="PackedScene" uid="uid://dqj0dlhxtix6" path="res://Enemies/goblin.tscn" id="7_h66nf"]
+[ext_resource type="PackedScene" uid="uid://cpk4wvk7umyu5" path="res://Enemies/bat.tscn" id="8_c4g2j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r81hv"]
 texture = ExtResource("1_h0qu3")
@@ -1248,6 +1250,11 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_xlxfn")
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_opica"]
+vertices = PackedVector2Array(3472, 720, 3856, 784, 32, 784, 3056, 720, 3856, 16, 3792, 640, 3792, 560, 2896, 528, 2896, 432, 2928, 496, 2928, 576, 2448, 576, 2000, 656, 2544, 528, 3568, 640, 3472, 624, 3568, 560, 2448, 496, 2544, 432, 3024, 576, 3024, 496, 3056, 624, 2160, 576, 2000, 560, 2160, 496, 32, 16, 1104, 528, 1104, 432, 1328, 560, 1328, 656, 592, 656, 48, 656, 48, 560, 688, 528, 592, 560, 688, 432)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 1, 5, 6), PackedInt32Array(7, 8, 9, 10), PackedInt32Array(11, 7, 10, 12), PackedInt32Array(13, 7, 11), PackedInt32Array(5, 1, 0, 14), PackedInt32Array(14, 0, 15, 16), PackedInt32Array(13, 11, 17, 18), PackedInt32Array(19, 20, 16, 15, 21), PackedInt32Array(19, 21, 3, 12, 10), PackedInt32Array(22, 11, 12), PackedInt32Array(22, 12, 23, 24), PackedInt32Array(25, 4, 6, 8), PackedInt32Array(26, 27, 24, 23, 28), PackedInt32Array(12, 3, 2, 29), PackedInt32Array(29, 2, 30, 28), PackedInt32Array(31, 30, 2), PackedInt32Array(31, 2, 25, 32), PackedInt32Array(33, 26, 28, 30, 34), PackedInt32Array(34, 32, 25, 35, 33), PackedInt32Array(20, 9, 8), PackedInt32Array(25, 18, 17, 24, 27), PackedInt32Array(27, 35, 25), PackedInt32Array(16, 20, 8, 6), PackedInt32Array(25, 8, 18)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(32, 16, 32, 784, 3856, 784, 3856, 16), PackedVector2Array(48, 560, 48, 656, 592, 656, 592, 560), PackedVector2Array(688, 432, 688, 528, 1104, 528, 1104, 432), PackedVector2Array(1328, 560, 1328, 656, 2000, 656, 2000, 560), PackedVector2Array(2160, 496, 2160, 576, 2448, 576, 2448, 496), PackedVector2Array(2544, 432, 2544, 528, 2896, 528, 2896, 432), PackedVector2Array(2928, 496, 2928, 576, 3024, 576, 3024, 496), PackedVector2Array(3056, 624, 3056, 720, 3472, 720, 3472, 624), PackedVector2Array(3568, 560, 3568, 640, 3792, 640, 3792, 560)])
+
 [node name="Game" type="Node2D"]
 
 [node name="Background" type="TileMap" parent="."]
@@ -1278,6 +1285,16 @@ script = ExtResource("6_qdqb4")
 
 [node name="Enemy_Container" type="Node2D" parent="."]
 
+[node name="Goblin" parent="Enemy_Container" instance=ExtResource("7_h66nf")]
+position = Vector2(1760, 544)
+
+[node name="Goblin2" parent="Enemy_Container" instance=ExtResource("7_h66nf")]
+position = Vector2(3328, 608)
+
+[node name="Bat" parent="Enemy_Container" instance=ExtResource("8_c4g2j")]
+position = Vector2(1712, 96)
+speed = 200
+
 [node name="Platform" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_5oaye")
 format = 2
@@ -1299,5 +1316,8 @@ position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 drag_horizontal_enabled = true
 drag_vertical_offset = -0.8
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_opica")
 
 [connection signal="body_entered" from="Exit_to_3" to="Exit_to_3" method="_on_Exit_body_entered"]

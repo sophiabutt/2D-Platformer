@@ -220,27 +220,27 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0do44"]
-size = Vector2(135, 86.5)
+size = Vector2(58, 32)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0a16c"]
-radius = 66.0
-height = 132.0
+radius = 34.0
+height = 74.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_88yff"]
-size = Vector2(136, 20)
+size = Vector2(57, 8)
 
 [node name="Bat" type="CharacterBody2D"]
 script = ExtResource("1_8tlmj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(7.5, -8.50002)
-scale = Vector2(2.98438, 2.98438)
+position = Vector2(1.5, -2.50003)
+scale = Vector2(1.67188, 1.67188)
 sprite_frames = SubResource("SpriteFrames_3eofj")
 animation = &"Moving"
 autoplay = "Moving"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(7.5, -20.75)
+position = Vector2(1, -5)
 shape = SubResource("RectangleShape2D_0do44")
 
 [node name="See" type="RayCast2D" parent="."]
@@ -249,7 +249,7 @@ target_position = Vector2(0, 1000)
 [node name="Attack" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack"]
-position = Vector2(-3, -21)
+position = Vector2(0, -5)
 shape = SubResource("CapsuleShape2D_0a16c")
 
 [node name="Timer" type="Timer" parent="Attack"]
@@ -257,7 +257,7 @@ shape = SubResource("CapsuleShape2D_0a16c")
 [node name="Above_and_Below" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Above_and_Below"]
-position = Vector2(8, -74)
+position = Vector2(1.5, -25)
 shape = SubResource("RectangleShape2D_88yff")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

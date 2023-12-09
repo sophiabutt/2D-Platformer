@@ -4,7 +4,7 @@ extends CharacterBody2D
 
 
 const SPEED = 300.0
-const JUMP_VELOCITY = -50.0
+const JUMP_VELOCITY = -70.0
 const MAX_JUMP = -600.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -31,3 +31,8 @@ func set_animation(anim):
 
 func die():
 	queue_free()
+
+
+func _on_Coin_Collector_body_entered(body):
+	if body.name == "Coins":
+		body.get_coin(global_position)

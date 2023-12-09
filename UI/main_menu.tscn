@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://6nnifrt554u5"]
+
+[ext_resource type="Script" path="res://UI/main_menu.gd" id="1_6225u"]
+
+[node name="Main Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6225u")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 800.0
+color = Color(0.482353, 0.482353, 0.482353, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 522.0
+text = "2D Platformer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 0
+offset_left = 476.0
+offset_top = 380.0
+offset_right = 676.0
+offset_bottom = 420.0
+text = "Play"
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 476.0
+offset_top = 440.0
+offset_right = 676.0
+offset_bottom = 480.0
+text = "Quit"
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
